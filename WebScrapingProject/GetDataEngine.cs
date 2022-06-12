@@ -21,10 +21,11 @@ namespace WebScrapingProject
 
                     if (int.Parse(number.Value) <= 100)
                     {
-                        message += $"City of {city.CityName}'s wait time is {number.Value} days\n";
+                        message += $"City of {city.CityName}'s wait time is {number.Value} days\n\n";
                     }
                 }
             }
+            message += "\n\nGet Ready to Apply";
             EmailNotificationProvider.SendEmail("royjianxue@yahoo.com", message, "Visa Waiting Time");
             Console.WriteLine("");
             Console.WriteLine("Please get ready to Apply.");

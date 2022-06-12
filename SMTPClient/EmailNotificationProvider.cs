@@ -6,6 +6,7 @@ namespace EmailServiceProvider
 {
     public class EmailNotificationProvider
     {
+        
         public static void SendEmail(string toMail, string body, string subject)
         {
             SmtpClient email = new SmtpClient()
