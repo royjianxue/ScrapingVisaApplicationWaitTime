@@ -1,17 +1,15 @@
 ﻿using Common.Contract.Models;
+using EmailServiceProvider;
 using System.Text.RegularExpressions;
 
 namespace WebScrapingProject
 {
     public class GetDataEngine
     {
-
-
         public void GetWaitTime()
         {
-
             CityModel cityModel = new CityModel();
-
+            string message = "";
             foreach (var city in cityModel.Cities)
             {
                 string waitTime = GetData(city.CityId).Result;
@@ -23,11 +21,12 @@ namespace WebScrapingProject
 
                     if (int.Parse(number.Value) <= 100)
                     {
-                        Console.WriteLine($"City of {city.CityName}'s wait time is {number.Value} days");
+                        message += $"City of {city.CityName}'s wait time is {number.Value} days\n";
                     }
                 }
             }
-
+            EmailNotificationProvider.SendEmail("royjianxue@yahoo.com", message, "Visa Waiting Time");
+            Console.WriteLine("");
             Console.WriteLine("Please get ready to Apply.");
 
         }    
@@ -46,9 +45,6 @@ namespace WebScrapingProject
             string[] result = content.Trim().Split(","); //  trimmed and separated string by comma. array is now e.g {"26 days", "56 days“, "99 days", "10 days"}
 
             return result[2];  // VISA application wait time for non immigrants is the 3rd element in the array
-
         }
-
-
     }
 }

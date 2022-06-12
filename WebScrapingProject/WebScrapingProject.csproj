@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.Contract\Common.Contract.csproj" />
+    <ProjectReference Include="..\SMTPClient\EmailServiceProvider.csproj" />
   </ItemGroup>
 
 </Project>
